@@ -12,36 +12,40 @@ public class Torus extends shape implements ThreeDimensional, PiRequired, MassCa
   private double majorRadius;
   private double minorRadius;
 
-  Torus(){
+  public Torus(){
 
   }
 
-  Torus(double majorRadius, double minorRadius){
+  public Torus(double majorRadius, double minorRadius){
     this.majorRadius = majorRadius;
     this.minorRadius = minorRadius;
   }
 
   public double getVolume(){
-
+    return 2 * Pi * Pi * majorRadius * minorRadius * minorRadius;
   }
 
   public double getSurfaceArea(){
-
+    return 4 * Pi * Pi * majorRadius * minorRadius;
   }
 
   public double getMass(){
-
+    return getSurfaceArea() * THICKNESS * DENSITY;
   }
 
   public void printInfo(){
-
+    System.out.println("Volume          : " + getVolume());
+        System.out.println("Luas permukaan  : " + getSurfaceArea());
+        System.out.println("Massa           : " + getMass());
+        System.out.println("Massa dalam kg  : " + gramToKilogram());
+        System.out.println("Biaya kirim     : Rp" + calculateCost());
   }
 
   public double gramToKilogram(){
-
+    return getMass() / 1000.0;
   }
 
   public double calculateCost(){
-
+    return (int) Math.ceil(gramToKilogram()) * 10000;
   }
 }
